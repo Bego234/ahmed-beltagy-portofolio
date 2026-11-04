@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Beltagy | Digital Marketer & Media Buyer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B0F19',
+                            card: '#131C2E',
+                            border: '#1E293B',
+                            primary: '#3B82F6',
+                            accent: '#F59E0B',
+                            glow: '#60A5FA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0F19;
+            color: #F8FAFC;
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
+        }
+        .glow-accent {
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
+        }
+        .glass-card {
+            background: rgba(19, 28, 46, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 min-h-screen selection:bg-blue-500 selection:text-white">
+
+    <!-- Notification Toast (replaces alert) -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-800 border border-blue-500/40 text-white px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+        <i id="toast-icon" class="fas fa-check-circle text-blue-400 text-xl"></i>
+        <span id="toast-msg">Action successful!</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-brand-dark/80 backdrop-blur-md border-b border-brand-border transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-amber-500 flex items-center justify-center font-bold text-lg text-white shadow-lg group-hover:scale-105 transition-transform">
+                    AB
+                </div>
+                <div>
+                    <span class="font-bold text-lg tracking-tight block text-white group-hover:text-blue-400 transition-colors">Ahmed Beltagy</span>
+                    <span class="text-xs text-slate-400 font-medium block">Digital Marketer & Media Buyer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
+                <a href="#experience" class="hover:text-blue-400 transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-blue-400 transition-colors">Case Studies</a>
+                <a href="#skills" class="hover:text-blue-400 transition-colors">Skills</a>
+                <a href="#services" class="hover:text-blue-400 transition-colors">Services</a>
+                <a href="#contact" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg shadow-blue-600/20 transition-all hover:scale-105">Let's Talk</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Toggle Menu">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-card/95 backdrop-blur-xl border-b border-brand-border px-6 py-6 space-y-4 shadow-2xl">
+            <a href="#about" class="block text-slate-200 hover:text-blue-400 font-medium py-2 mobile-link">About</a>
+            <a href="#experience" class="block text-slate-200 hover:text-blue-400 font-medium py-2 mobile-link">Experience & Training</a>
+            <a href="#projects" class="block text-slate-200 hover:text-blue-400 font-medium py-2 mobile-link">Projects & Case Studies</a>
+            <a href="#skills" class="block text-slate-200 hover:text-blue-400 font-medium py-2 mobile-link">Skills</a>
+            <a href="#services" class="block text-slate-200 hover:text-blue-400 font-medium py-2 mobile-link">Services</a>
+            <a href="#contact" class="block text-center w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold mobile-link">Contact Me</a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="overflow-hidden pt-20">
+
+        <!-- 1. Hero Section -->
+        <section id="hero" class="relative min-h-[90vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-brand-dark to-brand-dark -z-10"></div>
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+            
+            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs sm:text-sm font-semibold tracking-wide">
+                        <i class="fas fa-rocket text-xs"></i> Performance-Driven Media Buyer
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Hi, I'm <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-amber-400 bg-clip-text text-transparent">Ahmed Beltagy</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Junior Media Buyer & Digital Marketer passionate about scaling brands, lowering cost per acquisition, and turning strategic ad campaigns into real business revenue.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#projects" class="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold shadow-xl shadow-blue-600/30 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                            <span>Explore My Work</span> <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                        <a href="#contact" class="px-8 py-4 rounded-xl glass-card hover:bg-slate-800 text-white font-bold transition-all transform hover:-translate-y-0.5 border border-slate-700">
+                            Get In Touch
+                        </a>
+                    </div>
+
+                    <!-- Quick Stats Badges -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800 max-w-lg mx-auto lg:mx-0">
+                        <div class="text-center lg:text-left">
+                            <span class="block text-2xl font-bold text-blue-400">70K+</span>
+                            <span class="text-xs text-slate-400">Organic Views</span>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <span class="block text-2xl font-bold text-amber-400">50K EGP</span>
+                            <span class="text-xs text-slate-400">Sales Generated</span>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <span class="block text-2xl font-bold text-emerald-400">3.8 GPA</span>
+                            <span class="text-xs text-slate-400">Medical Studies</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative group">
+                        <div class="absolute -inset-1.5 bg-gradient-to-r from-blue-600 to-amber-500 rounded-3xl blur-xl opacity-50 group-hover:opacity-80 transition duration-1000 group-hover:duration-200"></div>
+                        <div class="relative w-72 h-80 sm:w-80 sm:h-96 rounded-3xl overflow-hidden glass-card border border-slate-700/80 shadow-2xl">
+                            <img src="https://placehold.co/400x500/131C2E/3B82F6?text=Ahmed+Beltagy" onerror="this.src='https://placehold.co/400x500/1e293b/ffffff?text=Ahmed+Beltagy'" alt="Ahmed Beltagy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-80"></div>
+                            <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl glass-card backdrop-blur-md border border-white/10">
+                                <p class="text-sm font-bold text-white">Digital Marketing Specialist</p>
+                                <p class="text-xs text-blue-400">Alexandria, Egypt</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. About Me Section -->
+        <section id="about" class="py-24 bg-slate-950/50 relative border-t border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-xs font-bold tracking-widest text-blue-400 uppercase">Who I Am</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white">About Me</h3>
+                    <p class="text-slate-400">Bridging medical precision with creative digital strategy and analytical marketing execution.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+                    <!-- Bio Card -->
+                    <div class="glass-card p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between border border-brand-border shadow-xl">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl"></div>
+                        <div class="space-y-6">
+                            <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-xl font-bold">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-white">Professional Background</h4>
+                            <p class="text-slate-300 leading-relaxed">
+                                I'm Ahmed Beltagy, a Junior Media Buyer passionate about helping brands grow through effective digital advertising. I have hands-on experience working with clothing and electronics brands, achieving <strong class="text-blue-400">70K+ organic views</strong> and contributing to <strong class="text-amber-400">50K EGP in sales</strong>.
+                            </p>
+                            <p class="text-slate-300 leading-relaxed">
+                                I'm proactive, responsible, eager to learn and always focused on finding opportunities, improving campaign performance, and driving real business results.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-slate-800 flex items-center gap-3 text-sm text-slate-400">
+                            <i class="fas fa-check-circle text-emerald-400"></i> Always focused on ROI and strategic scaling.
+                        </div>
+                    </div>
+
+                    <!-- Education Card -->
+                    <div class="glass-card p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between border border-brand-border shadow-xl">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl"></div>
+                        <div class="space-y-6">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl font-bold">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-white">Academic Background</h4>
+                            <div class="bg-brand-dark/60 p-6 rounded-2xl border border-slate-800 space-y-3">
+                                <span class="text-xs uppercase font-bold tracking-wider text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full">University Education</span>
+                                <h5 class="text-xl font-bold text-white">Bachelor of Medicine and Surgery (MBBCh)</h5>
+                                <p class="text-slate-300 font-medium">Kafr El Sheikh University</p>
+                                <div class="flex items-center justify-between text-sm text-slate-400 pt-2 border-t border-slate-800">
+                                    <span><i class="far fa-calendar-alt mr-2 text-blue-400"></i>2021 - 2028</span>
+                                    <span class="px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/20">Cumulative GPA: 3.8</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-400 text-sm">
+                                Studying medicine has instilled in me rigorous analytical thinking, attention to detail, resilience, and systematic problem-solving skills that I apply directly to modern marketing campaigns.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Work Experience & Training Section -->
+        <section id="experience" class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-xs font-bold tracking-widest text-blue-400 uppercase">Career Journey</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Experience & Professional Training</h3>
+                    <p class="text-slate-400">Hands-on practice and rigorous accredited training programs in digital marketing and tech.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Experience Card 1 -->
+                    <div class="glass-card p-8 rounded-3xl border border-brand-border flex flex-col justify-between hover:border-blue-500/40 transition-all duration-300 group">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold">Professional Experience</span>
+                                <span class="text-xs text-slate-400 font-semibold">2 Months</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">Organic Social Media Growth</h4>
+                            <p class="text-sm font-medium text-amber-400">Clothing Brand (MEDOSA Wear)</p>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-check text-blue-400 mt-1"></i>
+                                    <span>Managed social media content for a clothing brand for two months.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-check text-blue-400 mt-1"></i>
+                                    <span>Achieved <strong>70K+ organic views</strong> without paid advertising.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-check text-blue-400 mt-1"></i>
+                                    <span>Increased follower count through organic content and consistent activity.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+                            <span>MEDOSA Wear</span>
+                            <span class="text-blue-400 font-semibold">Verified Results</span>
+                        </div>
+                    </div>
+
+                    <!-- Training Card 1 -->
+                    <div class="glass-card p-8 rounded-3xl border border-brand-border flex flex-col justify-between hover:border-blue-500/40 transition-all duration-300 group">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-bold">MCIT Training</span>
+                                <span class="text-xs text-slate-400 font-semibold">Jul 2026 - Nov 2026</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">Digital Marketing & Freelancing</h4>
+                            <p class="text-sm font-medium text-slate-300">Ministry of Communications and Information Technology (MCIT), Egypt</p>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-check text-purple-400 mt-1"></i>
+                                    <span>Developed skills in Digital Marketing, AI-powered Digital Art Production & Freelancing.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-check text-purple-400 mt-1"></i>
+                                    <span>Learned Personal Branding, Client Communication, Negotiation, Proposal Writing.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-check text-purple-400 mt-1"></i>
+                                    <span>Created 8 practical projects using Canva, AI tools & social platforms.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+                            <span>MCIT Egypt</span>
+                            <span class="text-purple-400 font-semibold">Certified</span>
+                        </div>
+                    </div>
+
+                    <!-- Training Card 2 -->
+                    <div class="glass-card p-8 rounded-3xl border border-brand-border flex flex-col justify-between hover:border-blue-500/40 transition-all duration-300 group">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-bold">Youth Initiative</span>
+                                <span class="text-xs text-slate-400 font-semibold">Certified Course</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">Egypt Youth Support Initiative</h4>
+                            <p class="text-sm font-medium text-slate-300">Business Administration Systems & Marketing</p>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-check text-amber-400 mt-1"></i>
+                                    <span>Digital Marketing: Fundamentals and audience targeting.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-check text-amber-400 mt-1"></i>
+                                    <span>Soft Skills & English Communication: Teamwork, problem-solving, fluency.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-check text-amber-400 mt-1"></i>
+                                    <span>ICDL & AI: Computer productivity tools and practical AI applications.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+                            <span>Youth Support Program</span>
+                            <span class="text-amber-400 font-semibold">Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Projects / Case Studies Section -->
+        <section id="projects" class="py-24 bg-slate-950/50 relative border-t border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-xs font-bold tracking-widest text-blue-400 uppercase">Proven Results</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Projects & Case Studies</h3>
+                    <p class="text-slate-400">Real-world campaigns and strategic frameworks built for maximum conversion and brand equity.</p>
+                </div>
+
+                <div class="space-y-12">
+                    <!-- Case Study 1: Happy Home Heaters -->
+                    <div class="glass-card p-8 sm:p-10 rounded-3xl border border-brand-border grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="flex items-center gap-3">
+                                <span class="px-3.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-bold text-xs">Featured Campaign</span>
+                                <span class="text-slate-400 text-xs"><i class="fas fa-bolt text-amber-400 mr-1"></i> Electrical Appliances Brand</span>
+                            </div>
+                            <h4 class="text-2xl sm:text-3xl font-extrabold text-white">Engagement Campaign | سخانات هابي هوم</h4>
+                            <p class="text-slate-300 leading-relaxed">
+                                Planned and managed a high-impact engagement campaign for <strong class="text-white">Happy Home Heaters</strong> with a very limited advertising budget. Optimized audience targeting and messaging to achieve extraordinary return on ad spend.
+                            </p>
+                            
+                            <!-- Metrics Grid -->
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
+                                <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800">
+                                    <span class="text-xs text-slate-400 block">Sales Generated</span>
+                                    <span class="text-xl font-extrabold text-amber-400">50,000 EGP</span>
+                                </div>
+                                <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800">
+                                    <span class="text-xs text-slate-400 block">Conversations</span>
+                                    <span class="text-xl font-extrabold text-blue-400">330 Msgs</span>
+                                </div>
+                                <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800">
+                                    <span class="text-xs text-slate-400 block">Cost Per Message</span>
+                                    <span class="text-xl font-extrabold text-emerald-400">1.00 EGP</span>
+                                </div>
+                                <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800">
+                                    <span class="text-xs text-slate-400 block">Total Reach</span>
+                                    <span class="text-xl font-extrabold text-purple-400">10,552</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 flex justify-center">
+                            <div class="w-full bg-brand-dark/90 p-6 rounded-2xl border border-slate-800 space-y-4 shadow-xl">
+                                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+                                        <span class="text-sm font-bold text-white">Active Engagement Campaign</span>
+                                    </div>
+                                    <span class="text-xs text-blue-400 font-mono">Meta Ads</span>
+                                </div>
+                                <div class="space-y-3 text-sm">
+                                    <div class="flex justify-between"><span class="text-slate-400">Impressions:</span> <span class="font-bold text-white">14,042</span></div>
+                                    <div class="flex justify-between"><span class="text-slate-400">Ad Spend:</span> <span class="font-bold text-amber-400">331.24 EGP</span></div>
+                                    <div class="flex justify-between"><span class="text-slate-400">Link Clicks:</span> <span class="font-bold text-blue-400">239</span></div>
+                                    <div class="flex justify-between"><span class="text-slate-400">Welcome Views:</span> <span class="font-bold text-emerald-400">166</span></div>
+                                </div>
+                                <button onclick="showToast('Happy Home campaign stats verified successfully!')" class="w-full py-2.5 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 text-sm font-semibold transition-colors border border-blue-500/30">
+                                    View Campaign Metrics
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case Study 2: Luna Fashion SWOT Analysis -->
+                    <div class="glass-card p-8 sm:p-10 rounded-3xl border border-brand-border grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-5 space-y-4">
+                            <span class="px-3.5 py-1 rounded-full bg-purple-500/10 text-purple-400 font-bold text-xs">Demo Framework Work</span>
+                            <h4 class="text-2xl sm:text-3xl font-extrabold text-white">Luna Fashion Brand Strategy</h4>
+                            <p class="text-slate-300 leading-relaxed">
+                                Strategic SWOT analysis and visual design framework developed for <strong class="text-white">Luna Fashion</strong>, a contemporary clothing brand. Evaluated internal strengths and weaknesses alongside external market opportunities and threats.
+                            </p>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Strong brand identity & aesthetic evaluation</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Market expansion & influencer collaboration plans</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Clean, actionable executive summaries</li>
+                            </ul>
+                        </div>
+                        <div class="lg:col-span-7">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+                                <div class="bg-brand-dark p-4 rounded-xl border border-blue-500/20">
+                                    <span class="text-blue-400 font-bold block mb-1">STRENGTHS</span>
+                                    <p class="text-slate-300">• Strong brand identity<br>• High-quality products<br>• Loyal customer base</p>
+                                </div>
+                                <div class="bg-brand-dark p-4 rounded-xl border border-amber-500/20">
+                                    <span class="text-amber-400 font-bold block mb-1">WEAKNESSES</span>
+                                    <p class="text-slate-300">• Limited physical retail<br>• Higher price point<br>• Seasonal inventory</p>
+                                </div>
+                                <div class="bg-brand-dark p-4 rounded-xl border border-emerald-500/20">
+                                    <span class="text-emerald-400 font-bold block mb-1">OPPORTUNITIES</span>
+                                    <p class="text-slate-300">• International markets<br>• Sustainable lines<br>• Influencer collabs</p>
+                                </div>
+                                <div class="bg-brand-dark p-4 rounded-xl border border-rose-500/20">
+                                    <span class="text-rose-400 font-bold block mb-1">THREATS</span>
+                                    <p class="text-slate-300">• Fast fashion competition<br>• Economic downturn<br>• Shift in trends</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Skills Section -->
+        <section id="skills" class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-xs font-bold tracking-widest text-blue-400 uppercase">Expertise & Attributes</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Technical & Soft Skills</h3>
+                    <p class="text-slate-400">The combination of marketing tools mastery and interpersonal dedication.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Technical Skills -->
+                    <div class="glass-card p-8 rounded-3xl border border-brand-border space-y-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-white">Technical Skills</h4>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 hover:border-blue-500/50 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-xs">01</div>
+                                <span class="text-sm font-semibold text-slate-200">Media Buying & Paid Ads</span>
+                            </div>
+                            <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 hover:border-blue-500/50 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-xs">02</div>
+                                <span class="text-sm font-semibold text-slate-200">Audience Targeting</span>
+                            </div>
+                            <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 hover:border-blue-500/50 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-xs">03</div>
+                                <span class="text-sm font-semibold text-slate-200">Campaign Management</span>
+                            </div>
+                            <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 hover:border-blue-500/50 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-xs">04</div>
+                                <span class="text-sm font-semibold text-slate-200">Canva, Photoshop & CapCut</span>
+                            </div>
+                            <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 hover:border-blue-500/50 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-xs">05</div>
+                                <span class="text-sm font-semibold text-slate-200">AI Tools & Automation</span>
+                            </div>
+                            <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 hover:border-blue-500/50 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-xs">06</div>
+                                <span class="text-sm font-semibold text-slate-200">Content Creation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soft Skills -->
+                    <div class="glass-card p-8 rounded-3xl border border-brand-border space-y-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-white">Soft Skills & Mindset</h4>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 hover:border-amber-500/50 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-xs">01</div>
+                                <span class="text-sm font-semibold text-slate-200">Communication</span>
+                            </div>
+                            <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 hover:border-amber-500/50 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-xs">02</div>
+                                <span class="text-sm font-semibold text-slate-200">Problem-Solving</span>
+                            </div>
+                            <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 hover:border-amber-500/50 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-xs">03</div>
+                                <span class="text-sm font-semibold text-slate-200">Creativity</span>
+                            </div>
+                            <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 hover:border-amber-500/50 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-xs">04</div>
+                                <span class="text-sm font-semibold text-slate-200">Responsibility & Accountability</span>
+                            </div>
+                            <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 hover:border-amber-500/50 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-xs">05</div>
+                                <span class="text-sm font-semibold text-slate-200">Patience & Persistence</span>
+                            </div>
+                            <div class="bg-brand-dark/80 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 hover:border-amber-500/50 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-xs">06</div>
+                                <span class="text-sm font-semibold text-slate-200">Continuous Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Offered Services Section -->
+        <section id="services" class="py-24 bg-slate-950/50 relative border-t border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-xs font-bold tracking-widest text-blue-400 uppercase">How I Can Help</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Offered Services</h3>
+                    <p class="text-slate-400">Professional digital marketing solutions tailored to scale your brand efficiently.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="glass-card p-8 rounded-3xl border border-brand-border hover:border-blue-500/50 transition-all duration-300 group">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">Media Buying</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Strategic planning and execution of paid advertising campaigns across Meta, Instagram, and digital channels to maximize ROAS.
+                        </p>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="glass-card p-8 rounded-3xl border border-brand-border hover:border-blue-500/50 transition-all duration-300 group">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">Campaign Optimization</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Continuous monitoring, A/B testing, and budget reallocation to lower cost per acquisition and boost conversion rates.
+                        </p>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="glass-card p-8 rounded-3xl border border-brand-border hover:border-blue-500/50 transition-all duration-300 group">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">Audience Targeting</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Precise audience research, custom and lookalike audience setups to ensure your ads reach high-intent prospective buyers.
+                        </p>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="glass-card p-8 rounded-3xl border border-brand-border hover:border-blue-500/50 transition-all duration-300 group">
+                        <div class="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">Social Media Advertising</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Building engaging paid social strategies that increase follower retention, brand awareness, and direct messaging conversions.
+                        </p>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="glass-card p-8 rounded-3xl border border-brand-border hover:border-blue-500/50 transition-all duration-300 group">
+                        <div class="w-14 h-14 rounded-2xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">Campaign Performance Analysis</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            In-depth analytical reporting, KPI tracking, and actionable insights to evaluate marketing performance transparently.
+                        </p>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="glass-card p-8 rounded-3xl border border-brand-border hover:border-blue-500/50 transition-all duration-300 group">
+                        <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">Content & Creative Support</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Assistance in visual content development, copywriting frameworks, and AI-assisted design using Canva and Photoshop.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Contact / Footer Section -->
+        <section id="contact" class="py-24 relative border-t border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    
+                    <!-- Contact Info Column -->
+                    <div class="lg:col-span-5 space-y-8">
+                        <div class="space-y-4">
+                            <h2 class="text-xs font-bold tracking-widest text-blue-400 uppercase">Get In Touch</h2>
+                            <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Let's Discuss Your Next Campaign</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                Ready to scale your brand, improve your digital ad performance, or collaborate on a project? Reach out directly through any of the channels below.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <a href="tel:01556289321" class="flex items-center gap-4 p-4 rounded-2xl glass-card border border-slate-800 hover:border-blue-500/50 transition-colors group">
+                                <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-lg group-hover:scale-105 transition-transform">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block font-medium">Phone / WhatsApp</span>
+                                    <span class="text-base font-bold text-white">01556289321</span>
+                                </div>
+                            </a>
+
+                            <a href="mailto:bobelpathology@gmail.com" class="flex items-center gap-4 p-4 rounded-2xl glass-card border border-slate-800 hover:border-blue-500/50 transition-colors group">
+                                <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-lg group-hover:scale-105 transition-transform">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block font-medium">Email Address</span>
+                                    <span class="text-base font-bold text-white">bobelpathology@gmail.com</span>
+                                </div>
+                            </a>
+
+                            <div class="flex items-center gap-4 p-4 rounded-2xl glass-card border border-slate-800">
+                                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-lg">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block font-medium">Location</span>
+                                    <span class="text-base font-bold text-white">Alexandria, Egypt</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Handles -->
+                        <div class="pt-2">
+                            <span class="text-xs text-slate-400 block font-medium mb-3">Social Handle / Profile</span>
+                            <div class="flex items-center gap-3">
+                                <a href="https://instagram.com/ahmedbeltagy34" target="_blank" class="w-11 h-11 rounded-xl glass-card border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500 transition-all">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://linkedin.com" target="_blank" class="w-11 h-11 rounded-xl glass-card border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500 transition-all">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://facebook.com" target="_blank" class="w-11 h-11 rounded-xl glass-card border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500 transition-all">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://wa.me/201556289321" target="_blank" class="w-11 h-11 rounded-xl glass-card border border-slate-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-emerald-500 transition-all">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                            <span class="text-xs text-blue-400 mt-2 block font-mono">@ahmedbeltagy34</span>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form Column -->
+                    <div class="lg:col-span-7">
+                        <div class="glass-card p-8 sm:p-10 rounded-3xl border border-brand-border space-y-6 shadow-2xl relative">
+                            <div class="absolute top-0 right-0 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                            
+                            <h4 class="text-2xl font-bold text-white">Send Me a Message</h4>
+                            
+                            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="space-y-1">
+                                        <label class="text-xs font-semibold text-slate-300">Your Name</label>
+                                        <input type="text" id="sender-name" required placeholder="John Doe" class="w-full bg-brand-dark/80 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                                    </div>
+                                    <div class="space-y-1">
+                                        <label class="text-xs font-semibold text-slate-300">Your Email</label>
+                                        <input type="email" id="sender-email" required placeholder="john@example.com" class="w-full bg-brand-dark/80 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                                    </div>
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-xs font-semibold text-slate-300">Subject</label>
+                                    <input type="text" id="sender-subject" required placeholder="Media Buying Inquiry / Project Proposal" class="w-full bg-brand-dark/80 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-xs font-semibold text-slate-300">Message</label>
+                                    <textarea id="sender-message" rows="4" required placeholder="Tell me about your project or campaign goals..." class="w-full bg-brand-dark/80 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500 transition-colors resize-none"></textarea>
+                                </div>
+                                <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold shadow-lg shadow-blue-600/30 transition-all flex items-center justify-center gap-2">
+                                    <span>Send Message</span> <i class="fas fa-paper-plane text-xs"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Note -->
+                <div class="mt-24 pt-10 border-t border-slate-900 text-center space-y-4">
+                    <p class="text-lg italic font-medium text-amber-400/90 max-w-xl mx-auto">
+                        "Thank you for visiting, and I hope you find inspiration in my work!"
+                    </p>
+                    <div class="flex items-center justify-center gap-2 text-sm text-slate-500">
+                        <span>© 2026 Ahmed Beltagy. All rights reserved.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Toast Notification Function (No alert used)
+        function showToast(message, isSuccess = true) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.textContent = message;
+            if(isSuccess) {
+                toastIcon.className = "fas fa-check-circle text-blue-400 text-xl";
+            } else {
+                toastIcon.className = "fas fa-info-circle text-amber-400 text-xl";
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 4000);
+        }
+
+        // Contact Form Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('sender-name').value;
+            showToast(`Thank you ${name}! Your message has been sent successfully.`);
+            document.getElementById('contact-form').reset();
+        }
+    </script>
+</body>
+</html>
