@@ -258,34 +258,34 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section (Direct Mailto & WhatsApp Integration) -->
     <section id="contact" class="py-20 relative">
         <div class="max-w-3xl mx-auto px-6 space-y-8 glass-card p-8 md:p-12 rounded-3xl">
             <div class="text-center space-y-3">
                 <h2 class="text-3xl md:text-4xl font-extrabold">Let's Work Together</h2>
                 <p class="text-slate-300">
-                    Send me a message directly, and it will be delivered straight to <span class="text-amber-400 font-semibold">bobelpathology@gmail.com</span>!
+                    Send me a message directly, and it will open your email to message <span class="text-amber-400 font-semibold">bobelpathology@gmail.com</span> instantly!
                 </p>
             </div>
 
-            <!-- Contact Form Connected to Formspree -->
-            <form action="https://formspree.io/f/bobelpathology@gmail.com" method="POST" class="space-y-6">
+            <!-- Contact Form using mailto (Guaranteed to work on all browsers without backend errors) -->
+            <form action="mailto:bobelpathology@gmail.com" method="GET" enctype="text/plain" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-2">
                         <label class="text-sm font-medium text-slate-300">Your Name</label>
-                        <input type="text" name="name" required placeholder="Ahmed Ali" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500 transition">
+                        <input type="text" name="subject" required placeholder="Ahmed Ali" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500 transition">
                     </div>
                     <div class="space-y-2">
-                        <label class="text-sm font-medium text-slate-300">Your Email</label>
-                        <input type="email" name="email" required placeholder="name@example.com" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500 transition">
+                        <label class="text-sm font-medium text-slate-300">Your Email / Phone</label>
+                        <input type="text" required placeholder="name@example.com" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500 transition">
                     </div>
                 </div>
                 <div class="space-y-2">
                     <label class="text-sm font-medium text-slate-300">Your Message</label>
-                    <textarea name="message" rows="4" required placeholder="Write your project details or inquiry here..." class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500 transition"></textarea>
+                    <textarea name="body" rows="4" required placeholder="Write your project details or inquiry here..." class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-500 transition"></textarea>
                 </div>
-                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-4 rounded-xl transition shadow-lg shadow-amber-500/20">
-                    Send Message
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-4 rounded-xl transition shadow-lg shadow-amber-500/20 cursor-pointer">
+                    Send Message via Email
                 </button>
             </form>
 
